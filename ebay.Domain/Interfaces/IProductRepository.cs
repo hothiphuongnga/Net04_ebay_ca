@@ -1,7 +1,7 @@
 using ebay.Domain.Entities;
 namespace ebay.Domain.Interfaces;
 
-public interface IProductRepository
+public interface IProductRepository : IRepositoryBase<Product>
 {
     Task<IEnumerable<Product>> Get20ProductsAsync();
     //IEnumerable : đại diện cho một tập hợp các đối tượng có thể được lặp qua.

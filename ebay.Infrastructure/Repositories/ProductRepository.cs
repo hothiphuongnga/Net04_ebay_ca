@@ -3,8 +3,14 @@ using ebay.Domain.Entities;
 using ebay.Domain.Interfaces;
 using Microsoft.EntityFrameworkCore;
 namespace ebay.Infrastructure.Repositories;
-public class ProductRepository(EBayDbContext _context) : IProductRepository
+
+public class ProductRepository : RepositoryBase<Product>, IProductRepository
 {
+    private readonly EBayDbContext _context;
+    public ProductRepository(EBayDbContext context) : base(context)
+    {
+        _context = context;
+    }
     // private readonly EBayDbContext _context;
     // public ProductRepository(EBayDbContext context)
     // {

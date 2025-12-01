@@ -21,5 +21,34 @@ namespace ebay.Api.Controllers
                 Content = res
             });
         }
+        
+    
+
+    // get by id
+    [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(int id)
+        {
+            var res = await _ser.GetByIdAsync(id);
+            return Ok(new ResponseEntity<ProductDTO> 
+            {
+                Success = true,
+                Message = "Lấy sản phẩm thành công",
+                Content = res
+            });
+        }
+        // get all
+        [HttpGet("all")]
+        public async Task<IActionResult> GetAll()
+        {
+            var res = await _ser.GetAllAsync();
+            return Ok(new ResponseEntity<IEnumerable<ProductDTO>>
+            {
+                Success = true,
+                Message = "Lấy tất cả sản phẩm thành công",
+                Content = res
+            });
+        }
     }
+
+
 }

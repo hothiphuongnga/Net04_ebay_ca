@@ -3,11 +3,20 @@ using ebay.Application.DTOs;
 using ebay.Application.Interfaces;
 using ebay.Domain.Entities;
 using ebay.Domain.Interfaces;
+using ebay.Domain.ValueObjects;
 using ebay.Shared.Common;
 
 namespace ebay.Application.Services;
-public class ProductService(IProductRepository _repo, IMapper _mapper) : IProductService
+public class ProductService : ServiceBase<Product,ProductDTO>,IProductService
 {
+    private readonly IProductRepository _repo;
+    private readonly IMapper _mapper;
+
+    public ProductService(IProductRepository repo, IMapper mapper ) : base(repo, mapper)
+    {
+        _repo = repo;
+        _mapper = mapper;
+    }
     public async Task<IEnumerable<ProductDTO>> Get20ProductsAsync()
     {
         IEnumerable<Product> products = await _repo.Get20ProductsAsync();
@@ -36,6 +45,15 @@ public class ProductService(IProductRepository _repo, IMapper _mapper) : IProduc
    
        
 
+
+    // }
+
+
+    // thêm người dùng 
+    // public async Task AddUserDemo()
+    // {
+    //     User a = new User();
+    //     a.Email = new Email("123123").ToString();
 
     // }
 }
