@@ -5,7 +5,7 @@ using ebay.Api.Filters;
 using ebay.Api.Middlewares;
 using ebay.Application.Interfaces;
 using ebay.Application.Services;
-using ebay.Domain.Data;
+using ebay.Infrastructure.Data;
 using ebay.Domain.Interfaces;
 using ebay.Domain.Repositories;
 using ebay.Infrastructure.Repositories;

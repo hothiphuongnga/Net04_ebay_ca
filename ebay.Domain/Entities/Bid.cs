@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ebay.Domain.Entities;
 
-public partial class Bid
+public class Bid
 {
     public int Id { get; set; }
 
@@ -17,7 +17,7 @@ public partial class Bid
 
     public bool? Deleted { get; set; }
 
-    public virtual User Bidder { get; set; } = null!;
+    public User Bidder { get; set; } = null!;
 
-    public virtual Listing Listing { get; set; } = null!;
+    public Listing Listing { get; set; } = null!;
 }

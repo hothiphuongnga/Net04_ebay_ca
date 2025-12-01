@@ -1,6 +1,6 @@
 
 
-using ebay.Domain.Data;
+using ebay.Infrastructure.Data;
 using ebay.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 namespace ebay.Api.Middlewares;

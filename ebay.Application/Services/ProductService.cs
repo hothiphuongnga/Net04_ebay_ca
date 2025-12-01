@@ -23,6 +23,7 @@ public class ProductService : ServiceBase<Product,ProductDTO>,IProductService
         var res = _mapper.Map<List<ProductDTO>>(products);
         return res;
     }
+    
     // public async Task<PagingResult<ProductDTO>> GetProductsPagingAsync(int pageIndex, int pageSize, string? search)
     // {
     //         // bọc code trong try catch để bắt lỗi

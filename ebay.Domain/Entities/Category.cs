@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ebay.Domain.Entities;
 
-public partial class Category
+public class Category
 {
     public int Id { get; set; }
 
@@ -15,5 +15,5 @@ public partial class Category
 
     public bool? Deleted { get; set; }
 
-    public virtual ICollection<Listing> Listings { get; set; } = new List<Listing>();
+    public ICollection<Listing> Listings { get; set; } = new List<Listing>();
 }

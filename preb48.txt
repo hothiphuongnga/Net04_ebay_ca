@@ -1,0 +1,7 @@
+- Move Data từ ebay.Domain -> ebay.Infrastructure
+    - xoá EF trong domain , thêm trong Infrastructure
+- Xoá partial class - do EF generate trong entities
+- bỏ vitual trong entities
+- Chỉnh entity thành dạng Aggregate Root 
+    + Bảo vệ các thuộc tính bằng cách để private set; và readonly collection
+    + Các entity tạo ra từ scaffold của EF sẽ bị xoá public setter và chuyển sang private setter, và cần thêm contructor để khởi tạo các thuộc tính bắt buộc

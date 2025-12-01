@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ebay.Domain.Entities;
 
-public partial class GetListingProductDetail
+public class GetListingProductDetail
 {
     public DateTime? CreatedAt { get; set; }
 

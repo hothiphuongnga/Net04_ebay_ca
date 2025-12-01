@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ebay.Domain.Entities;
 
-public partial class RefreshToken
+public class RefreshToken
 {
     public long Id { get; set; }
 
@@ -29,7 +29,7 @@ public partial class RefreshToken
 
     public byte? Deleted { get; set; }
 
-    public virtual Client? Client { get; set; }
+    public Client? Client { get; set; }
 
-    public virtual User User { get; set; } = null!;
+    public User User { get; set; } = null!;
 }

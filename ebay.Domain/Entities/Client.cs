@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ebay.Domain.Entities;
 
-public partial class Client
+public class Client
 {
     public string ClientId { get; set; } = null!;
 
@@ -17,5 +17,5 @@ public partial class Client
 
     public DateTime? UpdatedAt { get; set; }
 
-    public virtual ICollection<RefreshToken> RefreshTokens { get; set; } = new List<RefreshToken>();
+    public ICollection<RefreshToken> RefreshTokens { get; set; } = new List<RefreshToken>();
 }

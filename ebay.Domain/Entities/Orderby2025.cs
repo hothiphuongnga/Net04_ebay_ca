@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ebay.Domain.Entities;
 
-public partial class Orderby2025
+public class Orderby2025
 {
     public int Id { get; set; }
 

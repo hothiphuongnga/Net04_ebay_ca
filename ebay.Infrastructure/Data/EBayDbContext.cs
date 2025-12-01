@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using ebay.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace ebay.Domain.Data;
+namespace ebay.Infrastructure.Data;
 
 public partial class EBayDbContext : DbContext
 {

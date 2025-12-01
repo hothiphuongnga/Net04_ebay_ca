@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ebay.Domain.Entities;
 
-public partial class Rating
+public class Rating
 {
     public int Id { get; set; }
 
@@ -21,9 +21,9 @@ public partial class Rating
 
     public bool? Deleted { get; set; }
 
-    public virtual Product? Product { get; set; }
+    public Product? Product { get; set; }
 
-    public virtual User RatedUser { get; set; } = null!;
+    public User RatedUser { get; set; } = null!;
 
-    public virtual User Rater { get; set; } = null!;
+    public User Rater { get; set; } = null!;
 }

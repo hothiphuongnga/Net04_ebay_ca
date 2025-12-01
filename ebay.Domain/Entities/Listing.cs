@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ebay.Domain.Entities;
 
-public partial class Listing
+public class Listing
 {
     public int Id { get; set; }
 
@@ -31,11 +31,11 @@ public partial class Listing
 
     public int? ProductId { get; set; }
 
-    public virtual ICollection<Bid> Bids { get; set; } = new List<Bid>();
+    public ICollection<Bid> Bids { get; set; } = new List<Bid>();
 
-    public virtual Category? Category { get; set; }
+    public Category? Category { get; set; }
 
-    public virtual Product? Product { get; set; }
+    public Product? Product { get; set; }
 
-    public virtual User Seller { get; set; } = null!;
+    public User Seller { get; set; } = null!;
 }

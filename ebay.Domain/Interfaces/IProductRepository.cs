@@ -13,5 +13,6 @@ public interface IProductRepository : IRepositoryBase<Product>
     // Task<PagingResult<Product>> GetProductsPagingAsync(int pageIndex, int pageSize, string? search);
 
     //update số lượng sản phẩm
-    Task<bool> UpdateStock(int productId, int quantity);
+    // chuyển qua business logic trong entities
+    // Task<bool> UpdateStock(int productId, int quantity);
 }

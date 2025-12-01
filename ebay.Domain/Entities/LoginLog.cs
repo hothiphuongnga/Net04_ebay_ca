@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ebay.Domain.Entities;
 
-public partial class LoginLog
+public class LoginLog
 {
     public int Id { get; set; }
 
@@ -23,5 +23,5 @@ public partial class LoginLog
 
     public DateTime? UpdatedAt { get; set; }
 
-    public virtual User? User { get; set; }
+    public User? User { get; set; }
 }

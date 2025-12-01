@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ebay.Domain.Entities;
 
-public partial class OrderDetail
+public class OrderDetail
 {
     public int Id { get; set; }
 
@@ -19,7 +19,7 @@ public partial class OrderDetail
 
     public bool? Deleted { get; set; }
 
-    public virtual Order Order { get; set; } = null!;
+    public Order Order { get; set; } = null!;
 
-    public virtual Product Product { get; set; } = null!;
+    public Product Product { get; set; } = null!;
 }

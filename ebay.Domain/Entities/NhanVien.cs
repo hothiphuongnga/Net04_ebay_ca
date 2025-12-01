@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ebay.Domain.Entities;
 
-public partial class NhanVien
+public class NhanVien
 {
     public int MaNhanVien { get; set; }
 
@@ -15,5 +15,5 @@ public partial class NhanVien
 
     public string? GioiTinh { get; set; }
 
-    public virtual PhongBan? PhongBanNavigation { get; set; }
+    public PhongBan? PhongBanNavigation { get; set; }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ebay.Domain.Entities;
 
-public partial class User
+public class User
 {
     public int Id { get; set; }
 
@@ -23,19 +23,19 @@ public partial class User
 
     public string? Phone { get; set; }
 
-    public virtual ICollection<Bid> Bids { get; set; } = new List<Bid>();
+    public ICollection<Bid> Bids { get; set; } = new List<Bid>();
 
-    public virtual ICollection<Listing> Listings { get; set; } = new List<Listing>();
+    public ICollection<Listing> Listings { get; set; } = new List<Listing>();
 
-    public virtual ICollection<LoginLog> LoginLogs { get; set; } = new List<LoginLog>();
+    public ICollection<LoginLog> LoginLogs { get; set; } = new List<LoginLog>();
 
-    public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
+    public ICollection<Order> Orders { get; set; } = new List<Order>();
 
-    public virtual ICollection<Rating> RatingRatedUsers { get; set; } = new List<Rating>();
+    public ICollection<Rating> RatingRatedUsers { get; set; } = new List<Rating>();
 
-    public virtual ICollection<Rating> RatingRaters { get; set; } = new List<Rating>();
+    public ICollection<Rating> RatingRaters { get; set; } = new List<Rating>();
 
-    public virtual ICollection<RefreshToken> RefreshTokens { get; set; } = new List<RefreshToken>();
+    public ICollection<RefreshToken> RefreshTokens { get; set; } = new List<RefreshToken>();
 
-    public virtual ICollection<UserRole> UserRoles { get; set; } = new List<UserRole>();
+    public ICollection<UserRole> UserRoles { get; set; } = new List<UserRole>();
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ebay.Domain.Entities;
 
-public partial class UserRole
+public class UserRole
 {
     public int UserId { get; set; }
 
@@ -11,7 +11,7 @@ public partial class UserRole
 
     public string? Description { get; set; }
 
-    public virtual Role Role { get; set; } = null!;
+    public Role Role { get; set; } = null!;
 
-    public virtual User User { get; set; } = null!;
+    public User User { get; set; } = null!;
 }

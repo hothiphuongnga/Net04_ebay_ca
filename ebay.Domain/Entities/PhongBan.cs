@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ebay.Domain.Entities;
 
-public partial class PhongBan
+public class PhongBan
 {
     public int MaPb { get; set; }
 
@@ -11,5 +11,5 @@ public partial class PhongBan
 
     public string? DiaDiem { get; set; }
 
-    public virtual ICollection<NhanVien> NhanViens { get; set; } = new List<NhanVien>();
+    public ICollection<NhanVien> NhanViens { get; set; } = new List<NhanVien>();
 }

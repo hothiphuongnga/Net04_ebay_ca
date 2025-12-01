@@ -1,4 +1,4 @@
-using ebay.Domain.Data;
+using ebay.Infrastructure.Data;
 using ebay.Domain.Interfaces;
 using Microsoft.EntityFrameworkCore;
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ebay.Domain.Entities;
 
-public partial class Group
+public class Group
 {
     public int Id { get; set; }
 

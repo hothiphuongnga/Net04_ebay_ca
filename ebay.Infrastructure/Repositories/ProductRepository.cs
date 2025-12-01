@@ -1,4 +1,4 @@
-using ebay.Domain.Data;
+using ebay.Infrastructure.Data;
 using ebay.Domain.Entities;
 using ebay.Domain.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -65,24 +65,6 @@ public class ProductRepository : RepositoryBase<Product>, IProductRepository
     //     return res;
     // }
 
-    public async Task<bool> UpdateStock(int productId, int quantity)
-    {
-        // tìm sản phẩm theo productId
-        var find = await _context.Products.FindAsync(productId);
-        // giảm số lượng stock
-        if (find != null)
-        {
-            // kiểm tra đủ số lượng
-            if (find.Stock >= quantity)
-            {
-                find.Stock -= quantity;
-                return true;
-            }
-            // không đủ thì kh
-        }
-        return false;
 
-        // save change
-    }
 }
 
