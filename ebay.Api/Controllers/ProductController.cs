@@ -48,7 +48,40 @@ namespace ebay.Api.Controllers
                 Content = res
             });
         }
+
+        // api tạo sp mới 
+        [HttpPost("strUrl")]
+        public async Task<IActionResult> PostProduct([FromBody] ProductCreateDTO dto)
+        {
+            var res = await _ser.InsertProductWithImagesAsync(dto);
+            return res.StatusCode switch
+            {
+                201 =>Ok(res),
+                400 => BadRequest(res),
+                _ => StatusCode(500, res)
+            };
+            
+            // 
+            
+        }
+        [HttpPost("formFile")]
+        public async Task<IActionResult> PostProductFile([FromForm] ProductCreateDTOV2 dto)
+        {
+            // tạo IProductService.InsertProductWithImagesFileAsync
+            // thực thi 
+            var res = await _ser.InsertProductWithImagesFileAsync(dto);
+            return res.StatusCode switch
+            {
+                201 =>Ok(res),
+                400 => BadRequest(res),
+                _ => StatusCode(500, res)
+            };
+            
+            // 
+            
+        }
     }
 
 
 }
+

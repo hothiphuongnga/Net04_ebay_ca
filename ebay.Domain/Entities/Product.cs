@@ -79,4 +79,12 @@ public class Product
     {
         Deleted = true;
     }
+
+    // Phương thức để thêm Images
+    public void AddProductImage(ProductImage productImage)
+    {
+        if (productImage == null)
+            throw new ArgumentNullException(nameof(productImage));
+        _productImages.Add(productImage);
+    }
 }

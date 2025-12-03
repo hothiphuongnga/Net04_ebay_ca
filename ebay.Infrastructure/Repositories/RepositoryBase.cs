@@ -53,4 +53,9 @@ public class RepositoryBase<T> : IRepositoryBase<T> where T : class
         _dbSet.Update(entity);
         return entity;
     }
+    // save changes
+    public async Task<int> SaveChangesAsync()
+    {
+        return await _db.SaveChangesAsync();
+    }
 }
