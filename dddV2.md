@@ -147,3 +147,27 @@ Tầng này chứa toàn bộ **IO, kết nối, giao tiếp bên ngoài**:
 Api/Presentation  →  Application  →  Domain
        ↓
 Infrastructure  →  Domain
+
+
+
+- DDD  : là cách xây dựng phần mềm tập trung vào nghiệp vụ
+
+              - domain 
+                     rút tiền nhưng không vượt quá số dư
+                     sản phẩm phải có giá lớn hơn 0
+                     x
+
+- DDD : cấu trúc lâu tốn thời gian ban đầu nhưng về lâu dài sẽ giúp code dễ bảo trì, mở rộng hơn
+
+- DDD : tư duy thiết kế khong template hay framework nào cả, mà tập trung vào nghiệp vụ
+       nó là tư duy và nguyên tắc
+- DDD : chia làm 4 lớp chính
+        - Presentation Layer : nhận request trả response
+        - Application Layer : điều phối nghiệp vụ
+        - Domain Layer : nghiệp vụ thuần
+        - Infrastructure Layer : kết nối db, api, file, cache...
+
+
+         EFEntity, 
+         Domain Entity
+         DTo, 

@@ -30,7 +30,10 @@ builder.Services.AddDbContext<EBayDbContext>(options =>
 });
 
 
-builder.Services.AddControllers();         // Hỗ trợ API Controllers
+builder.Services.AddControllers(op =>
+{
+    op.Filters.Add<XssProtectionFilter>();
+});         // Hỗ trợ API Controllers
 builder.Services.AddSwaggerGen();          // Hỗ trợ Swagger (OpenAPI) cho tài liệu API
 
 
@@ -41,7 +44,7 @@ builder.Services.AddScoped<IUserService,UserService>();
 
 builder.Services.AddScoped<IPasswordHelper, PasswordHelper>();
 
-
+builder.Services.AddScoped<ICloudinaryService, CloudinaryService>();
 
 
 builder.Services.AddScoped<IProductRepository, ProductRepository>();

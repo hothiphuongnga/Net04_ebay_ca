@@ -1,6 +1,7 @@
 namespace ebay.Api.Controllers
 {
     using Azure;
+    using ebay.Api.Filters;
     using ebay.Application.DTOs;
     using ebay.Application.Interfaces;
     using ebay.Shared.Common;
@@ -79,6 +80,38 @@ namespace ebay.Api.Controllers
             
             // 
             
+        }
+        [HttpPost("test-upload-cloud")]
+        //
+        public async Task<IActionResult> PostProductFile(IFormFile file)
+        {
+            var res = await _ser.TestUploadCLoud(file);
+            return res.StatusCode switch
+            {
+                200 =>Ok(res),
+                400 => BadRequest(res),
+                _ => StatusCode(500, res)
+            };
+            
+            // 
+            
+        }
+
+        [HttpPost("add-product-cloud")]
+        public async Task<IActionResult> PostProductFileCloud(ProductCreateDTOV2 file)
+        {
+            var res = await _ser.AddProductCloud(file);
+            return res.StatusCode switch
+            {
+                201 =>Ok(res), 0 => BadRequest(res),
+                _ => StatusCode(500, res)
+            };
+        }
+//api test
+        [HttpGet("test-product")]
+        public IActionResult GetProducttest()
+        {
+            return Ok();
         }
     }
 

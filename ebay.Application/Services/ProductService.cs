@@ -13,11 +13,13 @@ public class ProductService : ServiceBase<Product, ProductDTO>, IProductService
 {
     private readonly IProductRepository _repo;
     private readonly IMapper _mapper;
+    private readonly ICloudinaryService _cloudinaryService;
 
-    public ProductService(IProductRepository repo, IMapper mapper) : base(repo, mapper)
+    public ProductService(IProductRepository repo, IMapper mapper, ICloudinaryService cloudinaryService) : base(repo, mapper)
     {
         _repo = repo;
         _mapper = mapper;
+        _cloudinaryService = cloudinaryService;
     }
     public async Task<IEnumerable<ProductDTO>> Get20ProductsAsync()
     {
@@ -79,36 +81,36 @@ public class ProductService : ServiceBase<Product, ProductDTO>, IProductService
     {
         try
         {
-                 // chuyeern veef Product
-        Product product = _mapper.Map<Product>(dto);
-        // xuwr lys ds file
-        foreach (IFormFile file in dto.Images)
-        {
-            // xử lý lưu file lên server, lấy đường dẫn
-            string imageUrl = await SaveFileAsync(file);
-            ProductImage productImage = new ProductImage()
+            // chuyeern veef Product
+            Product product = _mapper.Map<Product>(dto);
+            // xuwr lys ds file
+            foreach (IFormFile file in dto.Images)
             {
-                Id = 0,
-                ImageUrl = imageUrl,
-                IsPrimary = false,
-                ProductId = product.Id,
-                CreatedAt = DateTime.Now,
-                Deleted = false
+                // xử lý lưu file lên server, lấy đường dẫn
+                string imageUrl = await SaveFileAsync(file);
+                ProductImage productImage = new ProductImage()
+                {
+                    Id = 0,
+                    ImageUrl = imageUrl,
+                    IsPrimary = false,
+                    ProductId = product.Id,
+                    CreatedAt = DateTime.Now,
+                    Deleted = false
+                };
+                // thâm vào list hình ảnh của sản phẩm
+                product.AddProductImage(productImage);
+            }
+            await _repo.AddAsync(product);
+            await _repo.SaveChangesAsync();
+
+
+            return new ResponseEntity<ProductDTO>()
+            {
+                Content = _mapper.Map<ProductDTO>(product),
+                Success = true,
+                Message = "Tạo sản phẩm thành công",
+                StatusCode = 201
             };
-            // thâm vào list hình ảnh của sản phẩm
-            product.AddProductImage(productImage);
-        }
-        await _repo.AddAsync(product);
-        await _repo.SaveChangesAsync(); 
-
-
-        return new ResponseEntity<ProductDTO>()
-        {
-            Content = _mapper.Map<ProductDTO>(product),
-            Success = true,
-            Message = "Tạo sản phẩm thành công",
-            StatusCode = 201
-        };
         }
         catch (Exception ex)
         {
@@ -121,11 +123,11 @@ public class ProductService : ServiceBase<Product, ProductDTO>, IProductService
             };
         }
     }
-//funtion static net9 convert string to slug  
+    //funtion static net9 convert string to slug  
     private async Task<string> SaveFileAsync(IFormFile file)
     {
         // tạo tên file mới để tránh trùng lặp
-        string newFileName = DateTime.Now.ToString("dd-mm-yyyy")+ "_" + file.FileName;
+        string newFileName = DateTime.Now.ToString("dd-mm-yyyy") + "_" + file.FileName;
         // xác định đường dẫn lưu file
         string folderPath = "wwwroot/pnga";
         if (!Directory.Exists(folderPath))
@@ -174,5 +176,64 @@ public class ProductService : ServiceBase<Product, ProductDTO>, IProductService
     //     User a = new User();
     //     a.Email = new Email("123123").ToString();
 
-    // }
+    // }\
+
+    public async Task<ResponseEntity<string>> TestUploadCLoud(IFormFile file)
+    {
+        // gọi hàm trong cloud
+        string url = _cloudinaryService.UploadAsync(file);
+        return new ResponseEntity<string>()
+        {
+            Content = url,
+            Success = true,
+            Message = "Upload thành công",
+            StatusCode = 200
+        };
+    }
+    public async Task<ResponseEntity<ProductDTO>> AddProductCloud(ProductCreateDTOV2 dto)
+    {
+        try
+        {
+            // chuyeern veef Product
+            Product product = _mapper.Map<Product>(dto);
+            // xuwr lys ds file
+            foreach (IFormFile file in dto.Images)
+            {
+                // xử lý lưu file lên server, lấy đường dẫn
+                string imageUrl = _cloudinaryService.UploadAsync(file);
+                ProductImage productImage = new ProductImage()
+                {
+                    Id = 0,
+                    ImageUrl = imageUrl,
+                    IsPrimary = false,
+                    ProductId = product.Id,
+                    CreatedAt = DateTime.Now,
+                    Deleted = false
+                };
+                // thâm vào list hình ảnh của sản phẩm
+                product.AddProductImage(productImage);
+            }
+            await _repo.AddAsync(product);
+            await _repo.SaveChangesAsync();
+
+
+            return new ResponseEntity<ProductDTO>()
+            {
+                Content = _mapper.Map<ProductDTO>(product),
+                Success = true,
+                Message = "Tạo sản phẩm thành công",
+                StatusCode = 201
+            };
+        }
+        catch (Exception ex)
+        {
+            return new ResponseEntity<ProductDTO>()
+            {
+                Content = null,
+                Success = false,
+                Message = "Lỗi khi tạo sản phẩm: " + ex.Message,
+                StatusCode = 500
+            };
+        }
+    }
 }

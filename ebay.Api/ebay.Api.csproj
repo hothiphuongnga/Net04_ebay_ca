@@ -28,4 +28,8 @@
     <ProjectReference Include="..\ebay.Infrastructure\ebay.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="wwwroot\**" CopyToPublishDirectory="Never" />
+</ItemGroup>
+
 </Project>
